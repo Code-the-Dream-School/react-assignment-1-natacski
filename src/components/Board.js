@@ -14,7 +14,40 @@ class Board extends Component {
     this.state = {
       squares: [ ],
       nextTurn: true,
+      winnerMessage: ''
     };
+  }
+
+  findTheWinner = (squares) => {
+    const winnerCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+  
+    for( let i = 0; i < winnerCombinations.length; i++ ) {
+      const [a,b,c] = winnerCombinations[i];
+  
+      if( squares[a] === 'x' && squares[a] === squares[b] && squares[a] === squares[c])
+      {
+      this.setState({winnerMessage: 'X IS THE WINNER!'});
+                 
+           return true;
+      }
+      else if( squares[a] === 'o' && squares[a] === squares[b] && squares[a] === squares[c])
+      {
+        this.setState({winnerMessage: 'O IS THE WINNER'});
+        return true;
+      }
+  
+    }
+   return false;
+   
   }
 
   handleSquaresClick(i) {
@@ -22,7 +55,7 @@ class Board extends Component {
    
     if (squares[i])
     {
-      alert('there is already something there!');
+      alert('There is already something there!');
       return;
     }
   
@@ -34,9 +67,7 @@ class Board extends Component {
     });
 
    
-    if (findTheWinner(squares)) {
-      this.props.newGame();
-    }
+    this.findTheWinner(squares);
   }
 
   renderCell(i) {
@@ -51,9 +82,12 @@ class Board extends Component {
   resetBoard = (e) => {
     e.preventDefault();
     this.setState( {squares: [ ],
-    nextTurn: true
+    nextTurn: true,
+    winnerMessage: ''
     })
   }
+
+  
 
 
   render(){
@@ -68,6 +102,13 @@ class Board extends Component {
               <div>
                 <img src={ logo } alt="Logo" className={"logo"} />
                 <h2 className='niceFont'>TIC TAC TOE</h2>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div>
+                <h3 className='niceFont' style={{marginLeft: 380, color: '#0080ff'}} >{this.state.winnerMessage}</h3>
               </div>
             </Col>
           </Row>
@@ -98,7 +139,7 @@ class Board extends Component {
             </Col>
             <Col className='niceFont'> Player <img className="image2" src={ logo2 } alt="Logo" width={20} height={20} />: {this.props.player2Name} </Col>
           </Row>
-          <Row>
+          <Row style={{marginBottom: 50}}> 
             <Col>
                <Button variant="outline-info" className='niceFont'
                 onClick = {this.props.newGame}>New Game</Button>{' '}
@@ -117,36 +158,7 @@ class Board extends Component {
   }
 }
 
-function findTheWinner(squares) {
-  const winnerCombinations = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
 
-  for( let i = 0; i < winnerCombinations.length; i++ ) {
-    const [a,b,c] = winnerCombinations[i];
-
-    if( squares[a] === 'x' && squares[a] === squares[b] && squares[a] === squares[c])
-    {
-     alert('X is the winner');
-         return true;
-    }
-    else if( squares[a] === 'o' && squares[a] === squares[b] && squares[a] === squares[c])
-    {
-      alert('O is the winner');
-      return true;
-    }
-
-  }
- return false;
- 
-}
 
 export default Board;
 
