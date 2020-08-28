@@ -37,6 +37,8 @@ code {
   padding: 0;
   width: 70px;
   height: 70px;
+  margin: 0;
+  border: solid 1px #72bcd4;
 }
 
 .squareIcon{
@@ -72,9 +74,59 @@ flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2%;
-}
+
+ }
 
 .logo{
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+  margin-left: 45%;
+  margin-top: 15px;
+}
+
+ button{
+  padding: 14px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 45%;
+  
+}
+
+.image1{
+  margin-left: 40%;
+  margin-top: 5%;
+} 
+.image2{
+  margin-left: 2%;
+  margin-top: 0%;
+} 
+h1
+{
+  margin-left: 38%;
+  margin-top: 20px;
+} 
+h2
+{
+  margin-left: 40%;
+  margin-top: 20px;
+} 
+
+form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+ 
+  margin: 40px 0 30px 300px;
+}
+form label {
+  margin: 5px 10px 5px 0;
+  font-size: 22px;
+}
+form input {
+  margin: 5px 50px 5px 0;
+  padding: 10px;
+  border: 1px solid #72bcd4;
+  border-radius: 15px;
 }
